@@ -1,0 +1,40 @@
+html{
+    height: 100%;
+    width: 100%;
+}
+body{
+    background-image: url(../img/Fondo.png);
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
+.row{
+    width: 100%;
+}
+.fondo-form{
+    background-color: #002856eb;
+    padding-top: 15%;
+    padding-bottom: 10%;
+}
+.form-control{
+    width: 80%;
+    color: #FFDA00;
+    border: 2px solid #FFDA00;
+    background-color: transparent;
+    border-radius: 8px;
+    margin: auto;
+    padding-left: 8%;
+}
+.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #FFDA00;
+    opacity: 1; /* Firefox */
+}
+.form-control:focus{
+    width: 80%;
+    color: #FFDA00;
+    border: 2px solid #FFDA00;
+    background-color: transparent;
+    border-radius: 8px;
+    margin: auto;
+    padding-left: 8%;
+}
