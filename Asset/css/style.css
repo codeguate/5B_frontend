@@ -10,6 +10,8 @@ body{
 }
 .row{
     width: 100%;
+    margin-left: 0;
+    margin-right: 0;
 }
 .fondo-form{
     background-color: #002856eb;
@@ -37,4 +39,30 @@ body{
     border-radius: 8px;
     margin: auto;
     padding-left: 8%;
+}
+.content_sms{
+    color: #fdda00;
+    font-size: 2em;
+    text-align: center;
+    border: 1px solid;
+    border-radius: 15px;
+    padding: 3%;
+    width: 90%;
+}
+.content_sms span{
+    font-size: 1.5em;
+    display: block;
+
+}
+@media only screen and (max-width: 720px){
+    .fondo-form{
+        height: 100% !important;
+        width: 100% !important;
+    }
+    .img_title ,.content-text{
+        width: 100% !important;
+    }
+    .content_sms{
+        font-size: 1em;
+    }
 }
