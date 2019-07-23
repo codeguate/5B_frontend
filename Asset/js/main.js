@@ -14,7 +14,7 @@ function guardar(data){
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             data:JSON.stringify(data),
-            url: "http://localhost/CODE/5B/backend/public/api/users",
+            url: "https://5bconectate.com/backend/public/api/users",
             success: function (response) {
     
                 $("#loaderModal").modal('hide');
@@ -77,7 +77,7 @@ function verificar(type,id){
                 cache:false,
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                url: "http://localhost/CODE/5B/backend/public/api/filter/"+data.id+"/users/"+data.state+"?filter="+data.filter,
+                url: "https://5bconectate.com/backend/public/api/filter/"+data.id+"/users/"+data.state+"?filter="+data.filter,
                 success: function (response) {
                         console.log(response);
                         
@@ -122,7 +122,7 @@ function buscaCodigo(id){
                 cache:false,
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                url: "http://localhost/CODE/5B/backend/public/api/filter/"+data.id+"/codigos/"+data.state+"?filter="+data.filter,
+                url: "https://5bconectate.com/backend/public/api/filter/"+data.id+"/codigos/"+data.state+"?filter="+data.filter,
                 success: function (response) {
                     $("#codigoVerificacion").addClass('d-none')
                     if(response.length>0){
@@ -132,7 +132,7 @@ function buscaCodigo(id){
                             cache:false,
                             contentType: "application/json; charset=utf-8",
                             dataType: "json",
-                            url: "http://localhost/CODE/5B/backend/public/api/filter/"+data.id+"/users/"+data.state+"?filter="+data.filter,
+                            url: "https://5bconectate.com/backend/public/api/filter/"+data.id+"/users/"+data.state+"?filter="+data.filter,
                             success: function (response) {
                                 
                                 if(response.length>0){
@@ -223,7 +223,7 @@ $(document).ready(function () {
         var data = {
             nombres:$("#name").val().split(' ')[0],
             apellidos:$("#name").val().split(' ')[1],
-            telefono:$("#telefono").val().substring(1,$("#telefono").val().length).replace(/ /g, '').replace(/-/g, ''),
+            telefono:$("#area").val().substring(0,$("#area").val().length).replace(/ /g, '').replace("+", '')+$("#telefono").val().substring(0,$("#telefono").val().length).replace(/ /g, '').replace(/-/g, ''),
             dpi:$("#dpi").val().replace(/ /g, '').replace(/-/g, ''),
             email:$("#email1").val(),
             password:"5Bconectados",

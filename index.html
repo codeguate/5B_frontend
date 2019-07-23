@@ -25,7 +25,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="Asset/css/style.css">
-    <title>Registro Conéctate</title>
+    <title>5B | Registro Conéctate</title>
   </head>
   <body>
       
@@ -37,14 +37,45 @@
     <div class="row h-100">
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
             <div class="d-flex h-100">
-                <img class="m-auto w-75 img_title" src="Asset/img/Titulo.png">
+                <div class="d-block m-auto text-center">
+                        <img class="w-25 img_title" src="Asset/img/5B-conectate.png"> 
+                        <img class="w-75 img_title" src="Asset/img/Titulo.png">
+                
+                        <div class="row w-75 mx-auto text-light">
+                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 offset-xs-1 offset-sm-1 offset-md-1 offset-lg-1 text-right d-block">
+                                    <div>Miercoles 21 de agosto</div>
+                                    <div>09:00 horas</div>
+                                </div>
+                                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 text-center">
+                                    
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOMAAADeCAMAAAD4tEcNAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BMQEAAADCoPVPbQZ/oAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+A8W4AAH7AbJ4AAAAAElFTkSuQmCC" class="img-responsive" alt="Image"
+                                    style="height: 50px;width:3px;">
+                                    
+                                </div>
+                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text-left">
+                                        <div>Tenedor del Cerro</div>
+                                        <div>Antigua Guatemala</div>
+                                </div>
+                        </div>
+                        <div class="w-50 mx-auto text-light mt-5">
+                            <div class="d-block w-100 text-center">
+                                <span>Organizado por:</span>
+                            </div>
+                            <div class="d-flex">
+                                    <img class="ml-auto" src="./Asset/img/Logo-5B.png">
+                                    <img  class="mr-auto" src="./Asset/img/Logo-Atefi.png">
+                            </div>
+                        </div>
+                </div>
             </div>
-            
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 d-flex">
-            <div class="m-auto w-75 h-75 fondo-form shadow">
+            <div class="m-auto w-50 h-75 fondo-form shadow">
                 
                     <form autocomplete="off" class="mt-auto">
+                         <div class="form-group text-center">
+                             <h1 class="text-warning">Registro</h1>
+                        </div>
                         <div class="form-group">
                             <input type="name" class="form-control" id="name" name="name" placeholder="NOMBRE">
                         </div>
@@ -56,14 +87,22 @@
                             </div>
                             
                         </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="telefono" name="telefono" placeholder="TELÉFONO" onkeyup="calidarTele(event);">
+                        <div class="form-group ">
+                            <div class="row mx-auto" style="width: 80%;"> 
+                                    <input type="text" class="form-control col-xs-4 col-sm-4 col-md-4 col-lg-4 " id="area" name="area" placeholder="PREFIJO" onkeyup="calidarArea(event);">
+                                    <input type="text" class="form-control col-xs-8 col-sm-8 col-md-8 col-lg-8" id="telefono" name="telefono" placeholder="TELÉFONO" onkeyup="calidarTele(event);">
+                           
+                            </div>
+                                    
                         </div>
                         <div class="form-group">
                             <input type="email" class="form-control" id="email1" name="email1" placeholder="E-MAIL">
                             <div id="emailVerificacion" class="d-none alert alert-danger mt-2 w-75 mx-auto">
                                 Tu Email ya se encuentra registrado
                              </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="empresa" name="empresa" placeholder="EMPRESA" onkeyup="calidarTele(event);">
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" id="codigo" name="codigo" placeholder="CÓDIGO" onkeyup="buscaCodigo(this.value);">
@@ -80,16 +119,20 @@
                         
                     </form>
                 
-                <div class="row">
-                    <div class="row w-75 m-auto">
-                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 d-flex">
-                            <img class="m-auto" src="./Asset/img/Logo-5B.png">
-                        </div>
-                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 d-flex">
-                            <img  class="m-auto" src="./Asset/img/Logo-Atefi.png">
+                    <div class="d-flex ">
+                        <div class="d-block mt-5 mx-auto text-center mb-3">
+                            <div class="text-light">
+                                Asistencia para registro y código:
+                            </div>
+                            <div class="text-warning mt-3">
+                                contactcenter@5b.com.gt
+                            </div>
+
+                            <div class="text-warning">
+                                PBX: 1775 Whatsapp: 5715-1775
+                            </div>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     </div>

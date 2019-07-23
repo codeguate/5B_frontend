@@ -9,18 +9,21 @@ function calidarTele(event){
     let tel
     if((event.keyCode)==8)        //"Enter" Key (13)
       {
-        tel=numeroTelefono.substring(4,numeroTelefono.length).replace(/ /g, '').replace(/-/g, '')
+        tel=numeroTelefono.substring(0,numeroTelefono.length).replace(/ /g, '').replace(/-/g, '')
         event.stopPropagation();
-        $("#telefono").val(tel)
+        numeroTelefono = formatearTel(tel);
+        $("#telefono").val(numeroTelefono)
         return false;
       }
-    if(numeroTelefono.length>5){
-      tel=numeroTelefono.substring(4,numeroTelefono.length).replace(/ /g, '').replace(/-/g, '')
-      $("#telefono").val(tel)
+    if(numeroTelefono.length>11){
+      tel=numeroTelefono.substring(0,10).replace(/ /g, '').replace(/-/g, '')
+      numeroTelefono = formatearTel(tel);
+        $("#telefono").val(numeroTelefono)
 
     }else{
       tel=numeroTelefono.replace(/ /g, '').replace(/-/g, '')
-      $("#telefono").val(tel)
+      numeroTelefono = formatearTel(tel);
+        $("#telefono").val(numeroTelefono)
     }
     if((event.keyCode)==8)        //"Enter" Key (13)
       {
@@ -33,6 +36,27 @@ function calidarTele(event){
     $("#telefono").val(numeroTelefono)
 }
 
+function calidarArea(event){
+  numeroArea = $("#area").val();
+  enviarData=false;
+  let tel
+  if((event.keyCode)==8)        //"Enter" Key (13)
+    {
+      tel=numeroArea.substring(0,numeroArea.length).replace(/ /g, '').replace("+", '')
+      event.stopPropagation();
+      $("#area").val("+"+tel)
+      return false;
+    }
+  if(numeroArea.length>5){
+    tel=numeroArea.substring(0,5).replace(/ /g, '').replace("+", '')
+    $("#area").val("+"+tel)
+
+  }else{
+    tel=numeroArea.replace(/ /g, '').replace("+", '')
+    $("#area").val("+"+tel)
+  }
+  
+}
   function cuiIsValid(event) {
 
     DPI = $("#dpi").val();
@@ -188,7 +212,7 @@ function calidarTele(event){
   }
   function formatearTel(tel){
     let numero = Array.from(tel);
-    let result = "+502 ";
+    let result = "";
     numero.forEach((element,i) => {
       result+=element
       if(i==3){
