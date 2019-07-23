@@ -45,7 +45,7 @@ body{
 .only-responsive{
   display: none;
 }
-@media only screen and (max-width: 800px){
+@media only screen and (max-width: 780px){
     .fondo-form{
         height: 100% !important;
         width: 100% !important;
