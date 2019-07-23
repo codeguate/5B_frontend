@@ -42,16 +42,74 @@ body{
 .grid-content{
     display: grid;
 }
-@media only screen and (max-width: 720px){
+.only-responsive{
+  display: none;
+}
+@media only screen and (max-width: 800px){
     .fondo-form{
         height: 100% !important;
         width: 100% !important;
     }
-    .img_title ,.content-text{
-        width: 100% !important;
+    .responsive-text{
+      font-size: .7em;
     }
     .content_sms{
         font-size: 1em;
+    }
+    
+    .responsive-full-w{
+      width: 100% !important;
+    }
+    .responsive-margin-logo{
+      margin-top: 8%;
+    }
+    .responsive-inputs{
+
+      display: flex;
+    }
+    .responsive-inputs input{
+      width: 63%;
+      float: right;
+      margin-right: 0;
+    }
+    .responsive-inputs input:first-child{
+      width: 33%;
+      float: left;
+      margin-left: 0;
+    }
+    .content_data_contact{
+      margin-top: 0 !important;
+    }
+    .responsive-margin{
+      margin-top: 0 !important;
+    }
+    .form-control{
+      padding-left: 5%;
+    }
+    .responsive-none{
+      display: none;
+    }
+    .responsive-mb-3{
+      margin-bottom: 5%;
+    }
+    .img-responsive{
+      height: 34px !important;
+      width: 1px !important;
+    }
+    .only-responsive{
+      width: 90% !important;
+      margin-top: 2% !important;
+      display: block;
+    }
+    body{
+      background-image: url(../img/Example/Landing\ Celular/CEL---Fondo.png) !important;
+      
+    }
+    .offset-sm-1 {
+      margin-left: 0;
+    }
+    .responsive-widht{
+      width: fit-content !important;
     }
 }
 
