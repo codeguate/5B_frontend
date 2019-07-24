@@ -172,7 +172,7 @@ function calidarArea(event){
       $("#dpi").removeClass('border border-danger')
       $("#dpi").addClass('border border-success')
       enviarData=true;
-      verificar("dpi",$("#dpi").val());
+      verificar("dpi",$("#dpi").val().replace(/ /g, '').replace(/-/g, ''));
       $("#dpi").val(DPI)
 
       return modulo === verificador;
@@ -239,7 +239,7 @@ function calidarArea(event){
 $(document).ready(function () {
     $("#dpi").blur(async function (e) { 
         {
-            await verificar("dpi",$("#dpi").val());
+            await verificar("dpi",$("#dpi").val().replace(/ /g, '').replace(/-/g, ''));
             if(valid.dpi){
                 $("#dpi").css('border-color','red');
                 $("#loaderModal").modal('hide');

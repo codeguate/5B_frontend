@@ -19,12 +19,29 @@ function guardar(data){
     
                 $("#loaderModal").modal('hide');
                 if(response.id){
-                    location.href = "./dashboard/registrado.html"
+                    url = "https://eu57.chat-api.com/instance54781/sendFile?token=jyxxunefvf2f43sz&phone="+response.telefono+"&body=https://5bconectate.com/backend/public/"+response.codigo+"_salida.png&filename="+response.codigo+".png"
+                    $.ajax({
+                        type: "GET",
+                        url: url,
+                        dataType: "json",
+                        success: function (response1) {
+                            if(response1.sent){
+                                location.href = "./dashboard/registrado.html"
+                            }
+                        }
+                    });
+                    
                 }
             },
-            error:function (error){
+            error:async function (error){
                 if(error.status==400){
-                    alert("el correo ya existe")
+                    $("#alertModal").removeClass("d-none");
+                    await verificar("email",$("#email1").val());
+                    await verificar("dpi",$("#dpi").val().replace(/ /g, '').replace(/-/g, ''));
+                    setTimeout(() => {
+                        $("#loaderModal").modal('hide');
+                        
+                    }, 500);
                 }
                 console.log(error);
     
@@ -79,7 +96,9 @@ function verificar(type,id){
                 dataType: "json",
                 url: "https://5bconectate.com/backend/public/api/filter/"+data.id+"/users/"+data.state+"?filter="+data.filter,
                 success: function (response) {
-                        // console.log(response);
+                        console.log(response);
+                        console.log("https://5bconectate.com/backend/public/api/filter/"+data.id+"/users/"+data.state+"?filter="+data.filter);
+                        
                         
                     if(response.length>0){
                         $("#"+type+"Verificacion").removeClass('d-none')
@@ -231,7 +250,7 @@ $(document).ready(function () {
         var data = {
             nombres:$("#name").val().split(' ')[0],
             apellidos:$("#name").val().split(' ')[1],
-            telefono:$("#area").val().substring(0,$("#area").val().length).replace(/ /g, '').replace("+", '')+$("#telefono").val().substring(0,$("#telefono").val().length).replace(/ /g, '').replace(/-/g, ''),
+            telefono:($("#area").val().substring(0,$("#area").val().length).replace(/ /g, '').replace("+", ''))+""+($("#telefono").val().substring(0,$("#telefono").val().length).replace(/ /g, '').replace(/-/g, '')),
             dpi:$("#dpi").val().replace(/ /g, '').replace(/-/g, ''),
             email:$("#email1").val(),
             password:"5Bconectados",
