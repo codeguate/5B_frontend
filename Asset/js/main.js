@@ -79,7 +79,7 @@ function verificar(type,id){
                 dataType: "json",
                 url: "https://5bconectate.com/backend/public/api/filter/"+data.id+"/users/"+data.state+"?filter="+data.filter,
                 success: function (response) {
-                        console.log(response);
+                        // console.log(response);
                         
                     if(response.length>0){
                         $("#"+type+"Verificacion").removeClass('d-none')
@@ -134,12 +134,20 @@ function buscaCodigo(id){
                             dataType: "json",
                             url: "https://5bconectate.com/backend/public/api/filter/"+data.id+"/users/"+data.state+"?filter="+data.filter,
                             success: function (response) {
-                                
                                 if(response.length>0){
-                                    $("#codigoVerificacion").addClass('d-none')
-                                    $("#codigoVerificacion2").removeClass('d-none')
-                                    $("#codigo").addClass('border border-danger')
-                                    $("#codigo").removeClass('border border-success')
+                                    if(response[0]){
+                                        if(response[0].email==$("#email1").val()){
+                                            $("#codigoVerificacion").addClass('d-none')
+                                            $("#codigoVerificacion2").addClass('d-none')
+                                            $("#codigo").removeClass('border border-danger')
+                                            $("#codigo").addClass('border border-success')
+                                        }else{
+                                            $("#codigoVerificacion").addClass('d-none')
+                                            $("#codigoVerificacion2").removeClass('d-none')
+                                            $("#codigo").addClass('border border-danger')
+                                            $("#codigo").removeClass('border border-success')
+                                        }
+                                    }
                                 }else{
                                     $("#codigoVerificacion").addClass('d-none')
                                     $("#codigoVerificacion2").addClass('d-none')
@@ -230,7 +238,9 @@ $(document).ready(function () {
             username:$("#email1").val().split('@')[0],
             codigo:$("#codigo").val()
         }
-        guardar(data);
+        if(!buscaCodigo(data.codigo)){
+            guardar(data);
+        }
         
         
     });
