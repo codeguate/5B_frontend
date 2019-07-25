@@ -15,21 +15,22 @@ function guardar(data){
             dataType: "json",
             data:JSON.stringify(data),
             url: "https://5bconectate.com/backend/public/api/users",
-            success: function (response) {
+            success: async function (response) {
     
-                $("#loaderModal").modal('hide');
                 if(response.id){
                     url = "https://eu57.chat-api.com/instance54781/sendFile?token=jyxxunefvf2f43sz&phone="+response.telefono+"&body=https://5bconectate.com/backend/public/"+response.codigo+"_salida.png&filename="+response.codigo+".png"
-                    $.ajax({
-                        type: "GET",
-                        url: url,
-                        dataType: "json",
-                        success: function (response1) {
-                            if(response1.sent){
-                                location.href = "./dashboard/registrado.html"
+                    await $.ajax({
+                            type: "GET",
+                            url: url,
+                            async:true,
+                            cache:false,
+                            dataType: "json",
+                            success: function (response1) {
+                                if(response1.sent){
+                                    location.href = "./dashboard/registrado.html"
+                                }
                             }
-                        }
-                    });
+                        });
                     
                 }
             },
@@ -39,6 +40,8 @@ function guardar(data){
                     $("#ErrorMesagge").html("Error de Registro");
                     await verificar("email",$("#email1").val());
                     await verificar("dpi",$("#dpi").val().replace(/ /g, '').replace(/-/g, ''));
+                    await verificar("codigo",$("#codigo").val());
+                    await buscaCodigo($("#codigo").val());
                     setTimeout(() => {
                         $("#loaderModal").modal('hide');
                         
