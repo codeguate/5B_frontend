@@ -205,24 +205,6 @@ function buscaCodigo(id){
 
 $(document).ready(function () {
     $("#guardar").attr('disabled',true);
-    
-
-    $("#email1").keyup(async function (e) { 
-        if ( e.which != 13 ) {
-            e.preventDefault();
-            $("#loaderModal").modal('hide');
-        }else{
-            await verificar("email",$("#email1").val());
-            if(valid.email){
-                $("#email1").css('border-color','red');
-                $("#loaderModal").modal('hide');
-
-            }else{
-                $("#email1").css('border-color','green');
-                $("#loaderModal").modal('hide');
-            }
-        }
-    });
 
     $("#codigo").keyup(async function (e) { 
         if ( e.which != 13 ) {
