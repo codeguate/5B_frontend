@@ -36,6 +36,7 @@ function guardar(data){
             error:async function (error){
                 if(error.status==400){
                     $("#alertModal").removeClass("d-none");
+                    $("#ErrorMesagge").html("Error de Registro");
                     await verificar("email",$("#email1").val());
                     await verificar("dpi",$("#dpi").val().replace(/ /g, '').replace(/-/g, ''));
                     setTimeout(() => {
@@ -52,6 +53,7 @@ function guardar(data){
 
     }else if(!$("#dpi").hasClass('border-success')){
         $("#alertModal").removeClass("d-none");
+        $("#ErrorMesagge").html("Identificacion incorrecta");
         setTimeout(() => {
             $("#loaderModal").modal('hide');
             
@@ -60,6 +62,7 @@ function guardar(data){
     }else if(!$("#email1").hasClass('border-success')){
         console.log('eror email');
         $("#alertModal").removeClass("d-none");
+        $("#ErrorMesagge").html("El Email ya esta registrado");
         setTimeout(() => {
             $("#loaderModal").modal('hide');
             
@@ -67,6 +70,7 @@ function guardar(data){
         
     }else if(!$("#codigo").hasClass('border-success')){
         console.log('eror codigo');
+        $("#ErrorMesagge").html("El codigo no puede registrarse");
         $("#alertModal").removeClass("d-none");
         setTimeout(() => {
             $("#loaderModal").modal('hide');
