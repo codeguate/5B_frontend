@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <link rel="apple-touch-icon" sizes="57x57" href="./../Asset/img/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="./../Asset/img/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="./../Asset/img/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="./../Asset/img/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="./../Asset/img/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="./../Asset/img/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="./../Asset/img/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="./../Asset/img/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./../Asset/img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="./../Asset/img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./../Asset/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="./../Asset/img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./../Asset/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./../Asset/img/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="../Asset/css/style.css">
+    <title>5B | Registro Conéctate</title>
+  </head>
+  <body>
+      <style>
+          .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
+                color: #ffffff!important;
+            }
+        
+            .dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
+                cursor: default;
+                color: #ffffff !important;
+                border: 1px solid transparent;
+                background: transparent;
+                box-shadow: none;
+            }
+            .dataTables_wrapper .dataTables_paginate .paginate_button {
+                box-sizing: border-box;
+                display: inline-block;
+                min-width: 1.5em;
+                padding: 0.5em 1em;
+                margin-left: 2px;
+                text-align: center;
+                text-decoration: none !important;
+                cursor: pointer;
+                color: #ffffff !important;
+                border: 1px solid transparent;
+                border-radius: 2px;
+            }
+      </style>
+      
+        <div id="alertModal" class="d-none alert alert-danger" >
+          <button type="button" class="close" onClick="$('#alertModal').addClass('d-none');">&times;</button>
+          <span id="ErrorMesagge">
+
+          </span>
+            </div>
+    <div class="row h-100">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <div class="d-flex h-100">
+                <div class="d-block m-auto text-center">
+                        <img class="w-25 responsive-margin-logo" src="../Asset/img/5B-conectate.png"> 
+                        <img class="w-75 responsive-full-w" src="../Asset/img/Titulo.png">
+                
+                        <div class="row w-75 mx-auto text-light responsive-full-w responsive-mb-3 responsive-widht">
+                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 offset-xs-1 offset-sm-1 offset-md-1 offset-lg-1 text-right d-block responsive-text responsive-widht">
+                                    <div>Miercoles 21 de agosto</div>
+                                    <div>09:00 horas</div>
+                                </div>
+                                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 text-center responsive-widht">
+                                    
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOMAAADeCAMAAAD4tEcNAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BMQEAAADCoPVPbQZ/oAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+A8W4AAH7AbJ4AAAAAElFTkSuQmCC" class="img-responsive" alt="Image"
+                                    style="height: 50px;width:3px;">
+                                    
+                                </div>
+                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 text-left responsive-text responsive-widht">
+                                        <div>Tenedor del Cerro</div>
+                                        <div>Antigua Guatemala</div>
+                                </div>
+                        </div>
+                        <div class="w-50 mx-auto text-light mt-5 responsive-none">
+                            <div class="d-block w-100 text-center">
+                                <span>Organizado por:</span>
+                            </div>
+                            <div class="d-flex">
+                                    <img class="ml-auto" src="./../Asset/img/Logo-5B.png">
+                                    <img  class="mr-auto" src="./../Asset/img/Logo-Atefi.png">
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 row" id="InicioSesion">
+            <div class="m-auto w-75 h-auto fondo-form shadow">
+                
+                    <form autocomplete="off" class="mt-5">
+                         <div class="form-group text-center">
+                             <h1 class="text-warning">Inicia Sesion</h1>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="username" name="username" placeholder="USERNAME">
+                            <div id="usernameVerificacion" class="d-none alert alert-danger mt-2 w-75 mx-auto">
+                                Tu Username es incorrecto
+                             </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="******">
+                            <div id="passwordVerificacion" class="d-none alert alert-danger mt-2 w-75 mx-auto">
+                                Tu password ya se encuentra registrado
+                             </div>
+                        </div>
+                        <div class="form-group w-100 text-center">
+                            <button type="button" style="cursor:pointer;" class="btn btn-warning m-auto w-75" id="login">Iniciar Sesion</button>
+                        </div>
+                        
+                    </form>
+                
+                    <div class="d-flex">
+                        <div class="d-block mt-5 mx-auto text-center mb-3 content_data_contact">
+                            <div class="text-light">
+                                Asistencia para registro y código:
+                            </div>
+                            <div class="text-warning mt-3 responsive-margin">
+                                contactcenter@5b.com.gt
+                            </div>
+
+                            <div class="text-warning">
+                                Tel: (+502) 2420-7220
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+                    <div class="w-50 mx-auto text-light mt-5 only-responsive">
+                            <div class="d-block w-100 text-center">
+                                <span>Organizado por:</span>
+                            </div>
+                            <div class="d-flex">
+                                    <img class="ml-auto" src="./../Asset/img/Logo-5B.png">
+                                    <img  class="mr-auto" src="./../Asset/img/Logo-Atefi.png">
+                            </div>
+                        </div>
+            </div>
+        </div>
+
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 d-none text-light row "  id="InicioTabla">
+            <div class="m-auto w-75 h-auto fondo-form shadow text-light">
+                
+                    <div class="m-3">
+                         <div class="form-group text-center">
+                             <h1 class="text-warning">Registros</h1>
+                        </div>
+                        <table id="registrados" class="display w-100">
+                                <thead>
+                                    <tr>
+                                        <th >Nombre</th>
+                                        <th>Telefono</th>
+                                        <th>Email</th>
+                                        <th>Empresa</th>
+                                        <th>Codigo</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-dark">
+                                    
+                                </tbody>
+                            </table>
+                        
+                        
+                    </d>
+                
+                    <div class="d-flex">
+                        <div class="d-block mt-5 mx-auto text-center mb-3 content_data_contact">
+                            <div class="text-light">
+                                Asistencia para registro y código:
+                            </div>
+                            <div class="text-warning mt-3 responsive-margin">
+                                contactcenter@5b.com.gt
+                            </div>
+
+                            <div class="text-warning">
+                                Tel: (+502) 2420-7220
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+                <div class="w-50 mx-auto text-light mt-5 only-responsive">
+                        <div class="d-block w-100 text-center">
+                            <span>Organizado por:</span>
+                        </div>
+                        <div class="d-flex">
+                                <img class="ml-auto" src="./../Asset/img/Logo-5B.png">
+                                <img  class="mr-auto" src="./../Asset/img/Logo-Atefi.png">
+                        </div>
+                    </div>
+        </div>
+        
+        
+    </div>
+    
+    <div class="modal" id="loaderModal">
+        <div style="height: 100%;text-align: center;" >
+            <div class="lds-ring" style="align-self: center;margin-top: 15%;"><div></div><div></div><div></div><div></div></div>
+
+        </div>
+      </div>
+
+    
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script src="./../Asset/js/main.js"></script>
+    <script src="./../Asset/js/events.js"></script>
+    <script>
+        function createTable(){
+            $("#InicioTabla").removeClass("d-none");
+            $("#InicioSesion").addClass("d-none");
+            $('#registrados').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    ajax:{url:"https://5bconectate.com/backend/public/api/users",dataSrc:""},
+                    columns: [ 
+                        { data: 'nombres' },
+                        
+                        { data: 'telefono' },
+                        { data: 'email' },
+                        { data: 'descripcion' },
+                        { data: 'codigo' },
+                        { defaultContent: '<input type="button" >' }
+                    ],
+                    "scrollY": 400,
+                    "scrollX": true,
+                    "paging":  false,
+                    "responsive": true,
+                    "searching" : false,
+                    "info":     false,
+                    "oLanguage": {
+                        "sLengthMenu": "Mostrar _MENU_",
+                        "sSearch": "Buscar _INPUT_"
+                    }
+            });
+            setTimeout(() => {
+                $("#registrados_wrapper label").css("color", "#ffffff");
+                $("#registrados_paginate a").css("color", "#ffffff");
+            }, 500);
+            setTimeout(() => {
+                    $("#loaderModal").modal('hide');
+                    
+            }, 600);
+        }
+        $(document).ready( function () {
+    
+            if(localStorage.getItem('sesion5BConectate')){
+                let hoy = new Date();
+                if(localStorage.getItem('sesionVence5BConectate')>hoy){
+                    createTable();
+                }
+            }
+        } );
+    </script>
+  </body>
+</html>

@@ -209,7 +209,81 @@ function buscaCodigo(id){
         return false;
     }
 }
+function buscarCodigo(codigo){
 
+    if(codigo!=""){
+        var data = {
+            id:0,
+            state:codigo,
+            filter:"codigo"
+        }
+
+        try{
+        
+            $.ajax({
+                type: "GET",
+                async:true,
+                cache:false,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                url: "https://5bconectate.com/backend/public/api/filter/"+data.id+"/users/"+data.state+"?filter="+data.filter,
+                success: function (response) {
+                    if(response.length>0){
+                        response = response[0]
+                        $("#name").val(response.nombres+" "+response.apellidos);
+                        $("#dpi").val(formatearDPI(response.dpi));
+                        $("#area").val("+"+response.telefono.substring(0,3));
+                        $("#telefono").val(formatearTel(response.telefono.substring(3)));
+                        $("#email1").val(response.email);
+                        $("#empresa").val(response.descripcion);
+                        $("#codigo").val(response.codigo);
+
+                        $("#name").attr('disabled',true);
+                        $("#dpi").attr('disabled',true);
+                        $("#area").attr('disabled',true);
+                        $("#telefono").attr('disabled',true);
+                        $("#email1").attr('disabled',true);
+                        $("#empresa").attr('disabled',true);
+                        $("#codigo").attr('disabled',true);
+
+                        $("#name").removeClass('border-danger');
+                        $("#dpi").removeClass('border-danger');
+                        $("#area").removeClass('border-danger');
+                        $("#telefono").removeClass('border-danger');
+                        $("#email1").removeClass('border-danger');
+                        $("#empresa").removeClass('border-danger');
+                        $("#codigo").removeClass('border-danger');
+
+                        $("#name").addClass('border-success');
+                        $("#dpi").addClass('border-success');
+                        $("#area").addClass('border-success');
+                        $("#telefono").addClass('border-success');
+                        $("#email1").addClass('border-success');
+                        $("#empresa").addClass('border-success');
+                        $("#codigo").addClass('border-success');
+                        
+                        
+                    }else{
+                        $("#codigoVerificacion").removeClass('d-none')
+                        $("#codigo").addClass('border border-danger')
+                        $("#codigo").removeClass('border border-success')
+                    }
+                },
+                error: function (error){
+                    if(error.status==404){
+                        return false;
+                    }
+                }
+            });
+        }
+        catch(error){
+            
+        }
+    }else{
+        return false;
+    }
+    
+}
 $(document).ready(function () {
     $("#guardar").attr('disabled',true);
 
@@ -244,11 +318,62 @@ $(document).ready(function () {
             email:$("#email1").val(),
             password:"5Bconectados",
             username:$("#email1").val().split('@')[0],
+            descripcion:$("#empresa").val(),
             codigo:$("#codigo").val()
         }
         if(!buscaCodigo(data.codigo)){
             guardar(data);
         }
+        
+        
+    });
+
+
+
+    $("#login").click(function (e) { 
+        $("#loaderModal").modal("show");
+        e.preventDefault();
+        var data = {
+            username:$("#username").val().split(' ')[0],
+            password:$("#password").val()
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "https://5bconectate.com/backend/public/api/login",
+            data: data,
+            dataType: "json",
+            success: function (response) {
+                if(response.id>0){
+                    let hoy = new Date();
+                    let semanaEnMilisegundos = 1000 * 60 * 60 * 24 * 7;
+                    let suma = hoy.getTime() + semanaEnMilisegundos; //getTime devuelve milisegundos de esa fecha
+                    let fechaDentroDeUnaSemana = new Date(suma);
+                    localStorage.setItem("sesion5BConectate",true);
+                    localStorage.setItem("sesionVence5BConectate",fechaDentroDeUnaSemana);
+                    createTable();
+                }
+                console.log(response);
+                
+                
+            },
+            error: function (error){
+                if(error.status==401){
+                    $("#ErrorMesagge").html("Parece que su usuario o contraseña son incorrectos");
+                    $("#alertModal").removeClass("d-none");
+                    
+                }else{
+                    console.log(error);
+                }
+
+                setTimeout(() => {
+                    $("#loaderModal").modal('hide');
+                    
+                }, 500);
+                
+            }
+        });
+        
         
         
     });
