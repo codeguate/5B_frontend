@@ -166,7 +166,6 @@
                                         <th>Email</th>
                                         <th>Empresa</th>
                                         <th>Codigo</th>
-                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-dark">
@@ -234,14 +233,16 @@
                     processing: true,
                     serverSide: true,
                     ajax:{url:"https://5bconectate.com/backend/public/api/users",dataSrc:""},
+                    
                     columns: [ 
-                        { data: 'nombres' },
-                        
+                        { data: 'nombres',
+                        render: function ( data, type, row ) {
+                            return row.nombres+" "+row.apellidos;
+                        } },
                         { data: 'telefono' },
                         { data: 'email' },
                         { data: 'descripcion' },
                         { data: 'codigo' },
-                        { defaultContent: '<input type="button" >' }
                     ],
                     "scrollY": 400,
                     "scrollX": true,
@@ -267,7 +268,8 @@
     
             if(localStorage.getItem('sesion5BConectate')){
                 let hoy = new Date();
-                if(localStorage.getItem('sesionVence5BConectate')>hoy){
+                let unasemana = new Date(localStorage.getItem('sesionVence5BConectate'))
+                if(unasemana.getTime()>hoy.getTime()){
                     createTable();
                 }
             }
