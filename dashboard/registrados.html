@@ -166,6 +166,7 @@
                                         <th>Email</th>
                                         <th>Empresa</th>
                                         <th>Codigo</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-dark">
@@ -243,6 +244,10 @@
                         { data: 'email' },
                         { data: 'descripcion' },
                         { data: 'codigo' },
+                        { defaultContent: '',
+                        render: function ( data, type, row ) {
+                            return "<a href='https://eu57.chat-api.com/instance54781/sendFile?token=jyxxunefvf2f43sz&phone="+row.telefono+"&body=https://5bconectate.com/backend/public/"+row.codigo+"_salida.png&filename="+row.codigo+".png' target='_blank'>Reenviar W</a>"
+                        } }
                     ],
                     "scrollY": 400,
                     "scrollX": true,
