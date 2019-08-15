@@ -286,7 +286,34 @@ function buscarCodigo(codigo){
 }
 $(document).ready(function () {
     $("#guardar").attr('disabled',true);
-
+    $('.owl-carousel').owlCarousel({
+    margin:10,
+    dots: false, 
+    center: true,
+    items:7,
+    nav: true,
+    loop:true,
+    autoplay:true,
+    autoplayTimeout:3000,
+    autoplayHoverPause:false,
+    autoWidth:false,
+    responsiveClass:true,
+    responsive:{
+        0:{
+            items:3,
+            nav:true
+        },
+        600:{
+            items:3,
+            nav:true
+        },
+        1000:{
+            items:7,
+            nav:true,
+            loop:true
+        }
+    }
+})
     $("#codigo").keyup(async function (e) { 
         if ( e.which != 13 ) {
             e.preventDefault();
