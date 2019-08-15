@@ -291,25 +291,25 @@ $(document).ready(function () {
     dots: false, 
     center: true,
     items:7,
-    nav: true,
+    nav: false,
     loop:true,
     autoplay:true,
-    autoplayTimeout:3000,
+    autoplayTimeout:2000,
     autoplayHoverPause:false,
     autoWidth:false,
     responsiveClass:true,
     responsive:{
         0:{
             items:3,
-            nav:true
+            nav:false
         },
         600:{
-            items:3,
-            nav:true
+            items:5,
+            nav:false
         },
         1000:{
             items:7,
-            nav:true,
+            nav:false,
             loop:true
         }
     }
