@@ -151,16 +151,24 @@ body{
   }
 .agenda{
   display: block;
+  visibility: 100% !important;
+  opacity: 1 !important;
 }
 .agenda-min{
   display: none;
+  visibility: none !important;
+  opacity: 0 !important;
 }
 @media only screen and (max-width: 780px){
   .agenda{
     display: none !important;
+    visibility: none !important;
+    opacity: 0 !important;
   }
   .agenda-min{
     display: block !important;
+    visibility: 100% !important;
+    opacity: 1 !important;
   }
 }
   
