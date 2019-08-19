@@ -286,34 +286,62 @@ function buscarCodigo(codigo){
 }
 $(document).ready(function () {
     $("#guardar").attr('disabled',true);
-    $('.owl-carousel').owlCarousel({
-    margin:10,
-    dots: false, 
-    center: true,
-    items:7,
-    nav: false,
-    loop:true,
-    autoplay:true,
-    autoplayTimeout:2000,
-    autoplayHoverPause:false,
-    autoWidth:false,
-    responsiveClass:true,
-    responsive:{
-        0:{
-            items:3,
-            nav:false
-        },
-        600:{
-            items:5,
-            nav:false
-        },
-        1000:{
-            items:7,
-            nav:false,
-            loop:true
+    $('.patrocinadores-carousel').owlCarousel({
+        margin:10,
+        dots: false, 
+        center: true,
+        items:7,
+        nav: false,
+        loop:true,
+        autoplay:true,
+        autoplayTimeout:2000,
+        autoplayHoverPause:false,
+        autoWidth:false,
+        responsiveClass:true,
+        responsive:{
+            0:{
+                items:3,
+                nav:false
+            },
+            600:{
+                items:5,
+                nav:false
+            },
+            1000:{
+                items:7,
+                nav:false,
+                loop:true
+            }
         }
-    }
-})
+    })
+    $('.personal-carousel').owlCarousel({
+        margin:5,
+        dots: false, 
+        center: true,
+        items:5,
+        nav: false,
+        loop:true,
+        autoplay:true,
+        autoplayTimeout:1000,
+        autoplayHoverPause:false,
+        autoWidth:false,
+        responsiveClass:true,
+        responsive:{
+            0:{
+                items:1,
+                nav:false
+            },
+            600:{
+                items:3,
+                nav:false
+            },
+            1000:{
+                items:5,
+                nav:false,
+                loop:true
+            }
+        }
+    })
     $("#codigo").keyup(async function (e) { 
         if ( e.which != 13 ) {
             e.preventDefault();
