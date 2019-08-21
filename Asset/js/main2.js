@@ -306,6 +306,10 @@ function buscarCodigo(codigo){
                         $("#codigo").val(response.codigo);
                         $("#id_hidden").val(response.id);
 
+                        if(response.codigos){
+                            $("#registrarBTN").addClass('d-none')
+                            $("#guardar").removeClass('d-none')
+                        }
                             
                         $("#name").attr('disabled',true);
                         $("#dpi").attr('disabled',true);
