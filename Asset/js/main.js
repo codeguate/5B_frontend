@@ -4,7 +4,7 @@ var valid = {
     email:false,
     codigo:false
 }
-
+var registro = null
 function guardar(data){
     if($("#dpi").hasClass('border-success') && $("#email1").hasClass('border-success') && $("#codigo").hasClass('border-success')){
         $.ajax({
@@ -132,6 +132,39 @@ function verificar(type,id){
 
 
 
+function registrar(codigo,id){ 
+    $("#loaderModal").modal("show");
+    
+    var data = {
+        codigo:codigo,
+        activa:1,
+        asignado:id
+    }
+    
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data:(data),
+        url: "https://5bconectate.com/backend/public/api/check/codigo/"+data.codigo,
+        success: async function (response) {
+            setTimeout(() => {
+                $("#loaderModal").modal('hide');
+                
+            }, 500);
+            await  registro.ajax.reload(null,false);
+            console.log(registro);
+            
+            
+        },
+        error: function(error){
+            $("#loaderModal").modal('hide');
+            console.log(error);
+            
+        }
+    });
+    
+}
 function buscaCodigo(id){
     if(id!=""){
         var data = {
@@ -405,6 +438,7 @@ $(document).ready(function () {
                     let suma = hoy.getTime() + semanaEnMilisegundos; //getTime devuelve milisegundos de esa fecha
                     let fechaDentroDeUnaSemana = new Date(suma);
                     localStorage.setItem("sesion5BConectate",true);
+                    localStorage.setItem("sesion5BConectateID",response.id);
                     localStorage.setItem("sesionVence5BConectate",fechaDentroDeUnaSemana);
                     createTable();
                 }

@@ -157,21 +157,23 @@
             <div class="m-auto w-75 h-auto fondo-form shadow text-light">
                 
                     <div class="m-3">
-                         <div class="form-group text-center">
-                             <h1 class="text-warning">Registros</h1>
-                        </div>
+                        <div class="form-group text-center">
+                            <h1 class="text-warning">Registros</h1>
+                       </div>
                         <table id="registrados" class="display w-100">
                                 <thead>
                                     <tr>
                                         <th >Nombre</th>
+                                        <th>Registrar</th>
                                         <th>Telefono</th>
                                         <th>Email</th>
                                         <th>Empresa</th>
                                         <th>Codigo</th>
-                                        <th></th>
+                                        <th>Email</th>
+                                        <th>Whatsapp</th>
                                     </tr>
                                 </thead>
-                                <tbody class="text-dark">
+                                <tbody class="text-dark text-center">
                                     
                                 </tbody>
                             </table>
@@ -233,39 +235,83 @@
         function createTable(){
             $("#InicioTabla").removeClass("d-none");
             $("#InicioSesion").addClass("d-none");
-            $('#registrados').DataTable({
+            registro = $('#registrados').DataTable({
                     processing: true,
                     serverSide: true,
                     ajax:{url:"https://5bconectate.com/backend/public/api/users",dataSrc:""},
-                    
                     columns: [ 
                         { data: 'nombres',
                         render: function ( data, type, row ) {
                             return row.nombres+" "+row.apellidos;
                         } },
+                        { defaultContent: '',
+                        render: function ( data, type, row ) {
+                            if(row.codigos){
+                                return "<img src='https://png.pngtree.com/element_pic/17/03/15/0c6ee30a5d24b28cb11ad436e51e0e00.jpg' style='width:50px;height:50px;'>";
+                            }else{
+                                return "<a onClick='registrar(\""+row.codigo+"\",\""+row.id+"\")'><img src='./../Asset/img/registrar.png' style='width:50px;height:50px;'></a>";
+                            }
+                        } },
                         { data: 'telefono' },
                         { data: 'email' },
                         { data: 'descripcion' },
                         { data: 'codigo' },
+                        
                         { defaultContent: '',
                         render: function ( data, type, row ) {
-                            return "<a href='https://eu57.chat-api.com/instance54781/sendFile?token=jyxxunefvf2f43sz&phone="+row.telefono+"&body=https://5bconectate.com/backend/public/"+row.codigo+"_salida.png&filename="+row.codigo+".png' target='_blank'>Reenviar W</a>"
+                            return "<a href='https://eu57.chat-api.com/instance54781/sendFile?token=jyxxunefvf2f43sz&phone="+row.telefono+"&body=https://5bconectate.com/backend/public/"+row.codigo+"_salida.png&filename="+row.codigo+".png' target='_blank'><img src='./../Asset/img/email.png' style='width:50px;height:50px;'></a>";
+                        } },
+                        { defaultContent: '',
+                        render: function ( data, type, row ) {
+                            return "<a href='https://eu57.chat-api.com/instance54781/sendFile?token=jyxxunefvf2f43sz&phone="+row.telefono+"&body=https://5bconectate.com/backend/public/"+row.codigo+"_salida.png&filename="+row.codigo+".png' target='_blank'><img src='./../Asset/img/whatsapp.png' style='width:50px;height:50px;'></a>";
                         } }
                     ],
                     "scrollY": 400,
                     "scrollX": true,
-                    "paging":  false,
-                    "responsive": true,
-                    "searching" : false,
-                    "info":     false,
                     "oLanguage": {
                         "sLengthMenu": "Mostrar _MENU_",
                         "sSearch": "Buscar _INPUT_"
-                    }
+                    },"language": {
+                        "emptyTable":			"No hay datos disponibles en la tabla.",
+                        "info":		   			"Del _START_ al _END_ de _TOTAL_ ",
+                        "infoEmpty":			"Mostrando 0 registros de un total de 0.",
+                        "infoFiltered":			"(filtrados de un total de _MAX_ registros)",
+                        "infoPostFix":			"(actualizados)",
+                        "lengthMenu":			"Mostrar _MENU_ registros",
+                        "loadingRecords":		"Cargando...",
+                        "processing":			"Procesando...",
+                        "search":				"Buscar:",
+                        "searchPlaceholder":	"Dato para buscar",
+                        "zeroRecords":			"No se han encontrado coincidencias.",
+                        "paginate": {
+                            "first":			"Primera",
+                            "last":				"Última",
+                            "next":				"Siguiente",
+                            "previous":			"Anterior"
+                        },
+                        "aria": {
+                            "sortAscending":	"Ordenación ascendente",
+                            "sortDescending":	"Ordenación descendente"
+                        }
+                    },
+                    "paging":  true,
+                    "responsive": true,
+                    "searching" : true,
+                    "info":     true,
+                    "lengthMenu":				[[5, 10, 20, 25, 50, -1], [5, 10, 20, 25, 50, "Todos"]],
+                    "iDisplayLength":			10,
+                    "bServerSide":				true,
             });
             setTimeout(() => {
                 $("#registrados_wrapper label").css("color", "#ffffff");
                 $("#registrados_paginate a").css("color", "#ffffff");
+                // #myInput is a <input type="text"> element
+                $('#searchInput').on( 'keyup', function () {
+                    console.log($('#searchInput').val());
+                    regExSearch = '' + $('#searchInput').val() +'';
+                    
+                    registro.search( regExSearch,true,false ).draw();
+                } );
             }, 500);
             setTimeout(() => {
                     $("#loaderModal").modal('hide');
@@ -281,6 +327,8 @@
                     createTable();
                 }
             }
+
+            
         } );
     </script>
   </body>

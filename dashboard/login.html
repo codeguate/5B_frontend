@@ -24,10 +24,12 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="../Asset/css/styles.css">
+    <link rel="stylesheet" href="./../Asset/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="./../Asset/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="./../Asset/css/styles.css">
     <title>5B | Foro de Innovación</title>
   </head>
-  <body id="app">
+  <body>
       
       
         <div id="alertModal" class="d-none alert alert-danger" >
@@ -36,35 +38,12 @@
 
           </span>
             </div>
-            <div class="sidebar">
-                <section class="cameras">
-                  <h2>Cameras</h2>
-                  <ul>
-                    <li v-if="cameras.length === 0" class="empty">No cameras found</li>
-                    <li v-for="camera in cameras">
-                      <span v-if="camera.id == activeCameraId" :title="formatName(camera.name)" class="active">{{ formatName(camera.name) }}</span>
-                      <span v-if="camera.id != activeCameraId" :title="formatName(camera.name)">
-                        <a @click.stop="selectCamera(camera)">{{ formatName(camera.name) }}</a>
-                      </span>
-                    </li>
-                  </ul>
-                </section>
-                <section class="scans">
-                  <h2>Scans</h2>
-                  <ul v-if="scans.length === 0">
-                    <li class="empty">No scans yet</li>
-                  </ul>
-                  <transition-group name="scans" tag="ul">
-                    <li v-for="scan in scans" :key="scan.date" :title="scan.content">{{ scan.content }}</li>
-                  </transition-group>
-                </section>
-              </div>
-    <div class="row h-100">
+    <div class="row">
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
             <div class="d-flex h-100">
                 <div class="d-block m-auto text-center">
-                        <img class="w-25 responsive-margin-logo" src="../Asset/img/5B-conectate.png"> 
-                        <img class="w-75 responsive-full-w" src="../Asset/img/Titulo.png">
+                        <img class="w-25 responsive-margin-logo" src="./../Asset/img/5B-conectate.png"> 
+                        <img class="w-75 responsive-full-w" src="./../Asset/img/Titulo.png">
                 
                         <div class="row w-75 mx-auto text-light responsive-full-w responsive-mb-3 responsive-widht">
                                 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 offset-xs-1 offset-sm-1 offset-md-1 offset-lg-1 text-right d-block responsive-text responsive-widht">
@@ -97,17 +76,51 @@
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 d-flex">
             <div class="m-auto w-75 h-auto fondo-form shadow">
                 
-                <div class="video-wrap">
-                    <video id="video" playsinline autoplay></video>
-                </div>
-    
-                <!-- Trigger canvas web API -->
-                <div class="controller">
-                    <button id="snap">Capture</button>
-                </div>
-    
-                <!-- Webcam video snapshot -->
-                <canvas id="canvas" width="720" height="480"></canvas>
+                    <form autocomplete="off" class="mt-auto">
+                         <div class="form-group text-center">
+                             <h1 class="text-warning">Registro</h1>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="NOMBRE">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="dpi" name="dpi" placeholder="DPI / IDENTIFICACIÓN" onkeyup="cuiIsValid(event);">
+                            
+                            <div id="dpiVerificacion" class="d-none alert alert-danger w-75 mx-auto">
+                               Tu Identificacion ya se encuentra registrado
+                            </div>
+                            
+                        </div>
+                        <div class="form-group ">
+                            <div class="row mx-auto responsive-inputs" style="width: 80%;"> 
+                                    <input type="text" class="form-control col-xs-4 col-sm-4 col-md-4 col-lg-4 " id="area" name="area" placeholder="PREFIJO" onkeyup="calidarArea(event);">
+                                    <input type="text" class="form-control col-xs-8 col-sm-8 col-md-8 col-lg-8" id="telefono" name="telefono" placeholder="TELÉFONO" onkeyup="calidarTele(event);">
+                            </div>
+                                    
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="email1" name="email1" placeholder="E-MAIL">
+                            <div id="email1Verificacion" class="d-none alert alert-danger mt-2 w-75 mx-auto">
+                                Tu Email ya se encuentra registrado
+                             </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="empresa" name="empresa" placeholder="EMPRESA" onkeyup="calidarTele(event);">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="codigo" name="codigo" placeholder="CÓDIGO" onkeyup="buscaCodigo(this.value);">
+                            <div id="codigoVerificacion" class="d-none alert alert-danger mt-2  w-75 mx-auto">
+                                Este Código no Existe
+                             </div>
+                             <div id="codigoVerificacion2" class="d-none alert alert-danger  mt-2 w-75 mx-auto">
+                                Tu Codigo ya esta registrado en otro usuario
+                             </div>
+                        </div>
+                        <div class="form-group w-100 text-center">
+                            <button type="button" style="cursor:pointer;" class="btn btn-warning m-auto w-75" id="guardar">Registrar</button>
+                        </div>
+                        
+                    </form>
                 
                     <div class="d-flex">
                         <div class="d-block mt-5 mx-auto text-center mb-3 content_data_contact">
@@ -135,6 +148,68 @@
             </div>
         </div>
     </div>
+
+
+    <div class="row  agenda">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 h-100 text-center">
+            <img src="./../Asset/img/Agenda-desktop.jpg" class="img-fluid" alt="" srcset="">
+        </div>
+    </div>
+
+    <div class="row  agenda-min">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 h-100 text-center">
+            <img src="./../Asset/img/Agenda-movil.jpg" class="img-fluid" alt="" srcset="">
+        </div>
+    </div>
+
+    <div class="row pt-3 pb-3">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+            <div class="owl-carousel personal-carousel">
+                <div> <img src="./../Asset/img/speakers/01.jpg" class="img-fluid" style="max-height:100%" alt=""> </div>
+                <div> <img src="./../Asset/img/speakers/02.jpg" class="img-fluid" style="max-height:100%" alt=""> </div>
+                <div> <img src="./../Asset/img/speakers/03.jpg" class="img-fluid" style="max-height:100%" alt=""> </div>
+                <div> <img src="./../Asset/img/speakers/04.jpg" class="img-fluid" style="max-height:100%" alt=""> </div>
+                <div> <img src="./../Asset/img/speakers/05.jpg" class="img-fluid" style="max-height:100%" alt=""> </div>
+                <div> <img src="./../Asset/img/speakers/06.jpg" class="img-fluid" style="max-height:100%" alt=""> </div>
+                <div> <img src="./../Asset/img/speakers/07.jpg" class="img-fluid" style="max-height:100%" alt=""> </div>
+                <div> <img src="./../Asset/img/speakers/08.jpg" class="img-fluid" style="max-height:100%" alt=""> </div>
+              </div>
+        </div>
+    </div>
+
+    <div class="row pt-3 pb-3">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+            <div class="owl-carousel patrocinadores-carousel">
+                <div> <img src="./../Asset/img/partners/01.png" class="img-fluid" style="max-height:100%" alt=""> </div>
+                <div> <img src="./../Asset/img/partners/02.png" class="img-fluid" style="max-height:100%" alt=""> </div>
+                <div> <img src="./../Asset/img/partners/03.png" class="img-fluid" style="max-height:100%" alt=""> </div>
+                <div> <img src="./../Asset/img/partners/04.png" class="img-fluid" style="max-height:100%" alt=""> </div>
+                <div> <img src="./../Asset/img/partners/05.png" class="img-fluid" style="max-height:100%" alt=""> </div>
+                <div> <img src="./../Asset/img/partners/06.png" class="img-fluid" style="max-height:100%" alt=""> </div>
+                <div> <img src="./../Asset/img/partners/07.png" class="img-fluid" style="max-height:100%" alt=""> </div>
+                <div> <img src="./../Asset/img/partners/08.png" class="img-fluid" style="max-height:100%" alt=""> </div>
+                <div> <img src="./../Asset/img/partners/09.png" class="img-fluid" style="max-height:100%" alt=""> </div>
+                <div> <img src="./../Asset/img/partners/10.png" class="img-fluid" style="max-height:100%" alt=""> </div>
+                <div> <img src="./../Asset/img/partners/11.png" class="img-fluid" style="max-height:100%" alt=""> </div>
+                <div> <img src="./../Asset/img/partners/12.png" class="img-fluid" style="max-height:100%" alt=""> </div>
+                <!-- <div> <img src="./../Asset/img/partners/13.png" class="img-fluid" style="max-height:100%" alt=""> </div> -->
+                <div> <img src="./../Asset/img/partners/14.png" class="img-fluid" style="max-height:100%" alt=""> </div>
+                <div> <img src="./../Asset/img/partners/15.png" class="img-fluid" style="max-height:100%" alt=""> </div>
+                <div> <img src="./../Asset/img/partners/16.png" class="img-fluid" style="max-height:100%" alt=""> </div>
+                <div> <img src="./../Asset/img/partners/17.png" class="img-fluid" style="max-height:100%" alt=""> </div>
+                <div> <img src="./../Asset/img/partners/18.png" class="img-fluid" style="max-height:100%" alt=""> </div>
+                <div> <img src="./../Asset/img/partners/19.png" class="img-fluid" style="max-height:100%" alt=""> </div>
+                <div> <img src="./../Asset/img/partners/20.png" class="img-fluid" style="max-height:100%" alt=""> </div>
+                <div> <img src="./../Asset/img/partners/21.png" class="img-fluid" style="max-height:100%" alt=""> </div>
+                <div> <img src="./../Asset/img/partners/22.png" class="img-fluid" style="max-height:100%" alt=""> </div>
+              </div>
+        </div>
+    </div>
+   
+
+
+
+   
     
     <div class="modal" id="loaderModal">
         <div style="height: 100%;text-align: center;" >
@@ -150,62 +225,9 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="./../Asset/js/owl.carousel.min.js"></script>
     <script src="./../Asset/js/main.js"></script>
     <script src="./../Asset/js/events.js"></script>
-    <script>
-        'use strict';
-
-        const video = document.getElementById('video');
-        const canvas = document.getElementById('canvas');
-        const snap = document.getElementById("snap");
-        const errorMsgElement = document.querySelector('span#errorMsg');
-
-        const constraints = {
-        audio: true,
-        video: {
-            width: 1280, height: 720
-        }
-        };
-
-        // Access webcam
-        async function init() {
-        try {
-            const stream = await navigator.mediaDevices.getUserMedia(constraints);
-            handleSuccess(stream);
-        } catch (e) {
-            errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
-        }
-        }
-
-        // Success
-        function handleSuccess(stream) {
-        window.stream = stream;
-        video.srcObject = stream;
-        }
-
-        // Load init
-        
-
-        // Draw image
-        var context = canvas.getContext('2d');
-        snap.addEventListener("click", function() {
-                context.drawImage(video, 0, 0, 720, 480);
-                var foto = canvas.toDataURL(); //Esta es la foto, en base 64
-                console.log("Enviando foto. Por favor, espera...");
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", "./../php/bodega/operations.php?controller=subir/foto", true);
-                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xhr.send(encodeURIComponent(foto)); //Codificar y enviar
-
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-                        console.log("La foto fue enviada correctamente");
-                        console.log(xhr);
-                        console.log("Foto guardada con éxito. Puedes verla <a target='_blank' href='./" + xhr.responseText + "'> aquí</a>");
-                    }
-                }
-        });
-        </script>
     <script>
     </script>
   </body>
